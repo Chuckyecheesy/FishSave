@@ -174,7 +174,7 @@ where \(\tilde{s}\) are normalized slopes and \(\tilde{S}\) are normalized sums.
 
 ### Backend (TTS / Explain API)
 
-- **Env:** Create `.env` with `COHERE_API_KEY`, `ELEVENLABS_API_KEY`, optional `ELEVENLABS_VOICE_ID`.
+- **Env:** Create `.env` with `GEMINI_API_KEY`, `OPENAI_API_KEY`, `COHERE_API_KEY`, `ELEVENLABS_API_KEY`, optional `ELEVENLABS_VOICE_ID`.
 - **Install:** `pip install -r requirements.txt`
 - **Run:** `uvicorn policy_tts_api:app --reload --port 8010`
 - **Endpoints:**  
