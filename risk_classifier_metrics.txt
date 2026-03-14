@@ -1,0 +1,24 @@
+Risk classifier (low/medium/high)
+Train accuracy: 0.9863
+Val   accuracy: 0.9592
+Test  accuracy: 0.9592
+Train errors: 2 (underfitting target: < 25)
+Val   errors: 2 (overfitting proxy: val errors)
+Test  errors: 2
+Overfitting gap (train_acc - val_acc): 0.0271
+
+Confusion matrix (val):
+[[43  0  0]
+ [ 1  4  0]
+ [ 0  1  0]]
+
+Classification report (val):
+              precision    recall  f1-score   support
+
+         low       0.98      1.00      0.99        43
+      medium       0.80      0.80      0.80         5
+        high       0.00      0.00      0.00         1
+
+    accuracy                           0.96        49
+   macro avg       0.59      0.60      0.60        49
+weighted avg       0.94      0.96      0.95        49

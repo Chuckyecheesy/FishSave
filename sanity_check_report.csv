@@ -1,0 +1,4 @@
+file,rows,cols,total_missing_before_fill,year_columns_count,missing_OFR,missing_OFR_change,missing_PriceIndex
+train_features.csv,244,55,0,51,0,0,0
+val_features.csv,244,14,0,10,0,0,0
+test_features.csv,244,12,0,8,0,0,0

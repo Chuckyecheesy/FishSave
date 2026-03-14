@@ -1,0 +1,29 @@
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# ChromaDB
+chroma_policy_db/
+
+# Forecast graphs (one per country)
+graphs_5y/
+graphs_10y/
+
+# Node / Firebase
+node_modules/
+.firebase/
+
+# IDE / OS
+.idea/
+.DS_Store
+*.swp
+*.swo

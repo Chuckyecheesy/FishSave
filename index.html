@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Forecast Selector</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 800px;
+            transition: all 0.3s ease;
+            margin: auto;
+        }
+
+        .container:hover {
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-align: center;
+            letter-spacing: -0.025em;
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .results-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .risk-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+        }
+
+        .risk-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+
+        .risk-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .category-low { background: #dcfce7; color: #166534; }
+        .category-medium { background: #fef9c3; color: #854d0e; }
+        .category-high { background: #fee2e2; color: #991b1b; }
+
+        .risk-display {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .btn-explain-risk {
+            padding: 0.4rem 0.8rem;
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn-explain-risk:hover {
+            background: #e2e8f0;
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-explain-risk:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .risk-spinner {
+            width: 12px;
+            height: 12px;
+            border: 2px solid rgba(37, 99, 235, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        .risk-legend {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+
+        .legend-title {
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.025em;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .legend-box {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+        }
+
+        .legend-box.low { background: #166534; }
+        .legend-box.medium { background: #854d0e; }
+        .legend-box.high { background: #991b1b; }
+
+        .recommendations {
+            margin-top: 1.5rem;
+        }
+
+        .recommendations h3 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .recommendations li {
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+            color: #475569;
+        }
+
+        .graph-container {
+            width: 100%;
+            border-radius: 0.75rem;
+            overflow: visible;
+            border: 1px solid var(--border);
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .graph-image-wrap {
+            overflow: hidden;
+            border-radius: 0.75rem;
+        }
+
+        .graph-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .graph-labels {
+            display: block;
+            width: 100%;
+            margin-top: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            color: #334155;
+            background: #e2e8f0;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            box-sizing: border-box;
+        }
+
+        .graph-labels .graph-labels-title {
+            font-weight: 600;
+            margin-right: 0.75rem;
+        }
+
+        .graph-labels .graph-label-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-right: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .graph-labels .graph-label-dot {
+            width: 12px;
+            height: 4px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .graph-labels .graph-label-dot.ofr { background: #3b82f6; }
+        .graph-labels .graph-label-dot.inflation { background: #f97316; }
+
+        /* Micro-animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        label {
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            background-color: white;
+            font-size: 1rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            outline: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+        }
+
+        select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .duration-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .pills {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .pill {
+            padding: 0.5rem 1rem;
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: grab;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .pill:hover {
+            background: #e2e8f0;
+        }
+
+        .pill:active {
+            cursor: grabbing;
+        }
+
+        .drop-zone {
+            height: 60px;
+            border: 2px dashed var(--border);
+            border-radius: 0.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #94a3b8;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            background: #fdfdfd;
+        }
+
+        .drop-zone.drag-over {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+            color: var(--primary);
+        }
+
+        .drop-zone.has-item {
+            border-style: solid;
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.875rem;
+            border-radius: 0.75rem;
+            border: none;
+            background-color: var(--primary);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .submit-btn.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .status {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        /* Modal styling */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            max-width: 550px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: modalSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalSlide {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: #f1f5f9;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        #modal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            padding-right: 2rem;
+            line-height: 1.2;
+        }
+
+        .modal-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-text {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: #334155;
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #f1f5f9;
+        }
+
+        .modal-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .modal-btn {
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-accept {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-accept:hover {
+            background: #1d4ed8;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-reject {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .btn-reject:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        .btn-explain {
+            grid-column: span 2;
+            background: #8b5cf6;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-explain:hover {
+            background: #7c3aed;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+        }
+
+        .btn-explain:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background: #94a3b8;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .recommendations li {
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            list-style-position: inside;
+        }
+
+        .recommendations li:hover {
+            background: #f1f5f9;
+            color: var(--primary);
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+<body>
+    <script type="module">
+        // Firebase SDK (modular) – https://firebase.google.com/docs/web/setup
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDcQI7532TIB2-hAlMZ59l3_xlSBp1KbGE",
+            authDomain: "overfishing-2d415.firebaseapp.com",
+            projectId: "overfishing-2d415",
+            storageBucket: "overfishing-2d415.firebasestorage.app",
+            messagingSenderId: "545490620195",
+            appId: "1:545490620195:web:cbd9991e14516797418696"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        window.firebaseApp = app;
+    </script>
+    <div class="container">
+        <h1>FishSave</h1>
+        <div class="input-group">
+            <div class="dropdown-wrapper">
+                <label for="country-select">Country</label>
+                <select id="country-select" disabled>
+                    <option value="">Select a country</option>
+                </select>
+            </div>
+
+            <div class="duration-container">
+                <label>Forecast Duration</label>
+                <div class="pills">
+                    <div class="pill" draggable="true" data-duration="5">5 Years</div>
+                    <div class="pill" draggable="true" data-duration="10">10 Years</div>
+                </div>
+                <div id="drop-zone" class="drop-zone">
+                    Drag or click a duration
+                </div>
+            </div>
+
+            <button id="submit-btn" class="submit-btn">Run Forecast</button>
+        </div>
+
+        <div id="results" class="results-section">
+            <div class="results-grid">
+                <div class="risk-card">
+                    <label>Overfishing Risk</label>
+                    <div class="risk-display">
+                        <div id="risk-val" class="risk-value">--</div>
+                        <button id="btn-explain-risk" class="btn-explain-risk" title="Explain Risk Correlation">
+                            <span class="risk-spinner" id="risk-spinner"></span>
+                            <span id="risk-explain-text">Explain</span>
+                        </button>
+                    </div>
+                    <div id="risk-cat" class="risk-category">--</div>
+                    
+                    <div class="recommendations">
+                        <h3>Policy Recommendations</h3>
+                        <ul id="rec-list">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </div>
+
+                    <div class="risk-legend">
+                        <div class="legend-title">Risk Thresholds</div>
+                        <div class="legend-item"><span class="legend-box low"></span> 0.00 - 0.44: Low Risk</div>
+                        <div class="legend-item"><span class="legend-box medium"></span> 0.45 - 0.54: Medium Risk</div>
+                        <div class="legend-item"><span class="legend-box high"></span> 0.55 - 1.00: High Risk</div>
+                    </div>
+                </div>
+                <div class="graph-container">
+                    <div class="graph-image-wrap">
+                        <img id="forecast-graph" src="" alt="Forecast Graph">
+                    </div>
+                </div>
+                <div class="graph-labels" id="graph-labels" aria-label="Graph series meaning">
+                    <span class="graph-labels-title">Series in graph:</span>
+                    <span class="graph-label-item"><span class="graph-label-dot ofr" aria-hidden="true"></span><strong>OFR_change</strong> — Overfishing rate change (% year-over-year)</span>
+                    <span class="graph-label-item"><span class="graph-label-dot inflation" aria-hidden="true"></span><strong>Inflation_pct</strong> — Seafood price inflation (%)</span>
+                </div>
+            </div>
+        </div>
+        
+        <div id="status" class="status">Initialising...</div>
+    </div>
+
+    <!-- Modal for Policy Details -->
+    <div id="modal-backdrop" class="modal-backdrop">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h3 id="modal-title">Policy Details</h3>
+            
+            <div class="modal-section">
+                <h4>Reasoning</h4>
+                <div id="modal-reason" class="modal-text">--</div>
+            </div>
+
+            <div class="modal-section">
+                <h4>Explain Plan</h4>
+                <div id="modal-plan" class="modal-text">--</div>
+            </div>
+
+            <div class="modal-actions">
+                <button id="modal-reject" class="modal-btn btn-reject">Reject Policy</button>
+                <button id="modal-accept" class="modal-btn btn-accept">Accept Policy</button>
+                <button id="modal-explain" class="modal-btn btn-explain">
+                    <span class="spinner" id="explain-spinner"></span>
+                    <span id="explain-text">Explain Mechanism (Audio)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // When deploying to Firebase, replace with your Cloud Run URL (e.g. https://fishsave-api-xxxxx-uc.a.run.app)
+        const API_BASE = (function () {
+            var h = window.location.hostname;
+            if (h === 'localhost' || h === '127.0.0.1') return 'http://localhost:8010';
+            return 'https://fishsave-tts-api-545490620195.us-central1.run.app';
+        })();
+        let selectedDuration = null;
+        let riskData = [];
+        let currentResultState = null; // Track country, duration, score for audio API
+        let currentAudio = null;
+        let currentRecTitles = [];
+        let currentCategory = null;
+
+        const allPolicyPools = {
+            low: [
+                "Continue periodic monitoring of catch rates",
+                "Maintain current sustainable quota levels",
+                "Invest in marine habitat preservation",
+                "Promote catch-and-release programs for non-commercial species",
+                "Expand public awareness campaigns on sustainable seafood"
+            ],
+            medium: [
+                "Implement temporary seasonal fishing closures",
+                "Tighten gear restrictions to reduce bycatch",
+                "Strengthen local enforcement of maritime boundaries",
+                "Introduce dynamic ocean management using real-time satellite data",
+                "Mandate electronic monitoring on all mid-sized vessels"
+            ],
+            high: [
+                "Immediate moratorium on specific vulnerable species",
+                "Drastic reduction in industrial fishing permits",
+                "Establishment of wide-scale Marine Protected Areas (MPAs)",
+                "Impose heavy fines for high-sea transshipment violations",
+                "Full transition of fleet to zero-emission artisanal vessels"
+            ]
+        };
+
+        const policyDetails = {
+            "Continue periodic monitoring of catch rates": {
+                reason: "Low risk indicators suggest current levels are safe, but consistent data collection is critical to detect early signs of depletion.",
+                plan: "Monthly catch reports, digital logbook integration, and quarterly dockside inspections."
+            },
+            "Maintain current sustainable quota levels": {
+                reason: "Prevents resource over-exploitation while allowing stable economic activity for the local fishing community.",
+                plan: "Continue existing Total Allowable Catch (TAC) limits and freeze new industrial permit issuance."
+            },
+            "Invest in marine habitat preservation": {
+                reason: "Healthy ecosystems provide natural buffers for fish stocks, ensuring long-term replenishment and resilience.",
+                plan: "Fund nursery habitat restoration and define legal protections for coastal mangroves."
+            },
+            "Promote catch-and-release programs for non-commercial species": {
+                reason: "Reduces mortality in non-target species that play key roles in the marine food web.",
+                plan: "Education for local fishers and mandatory release of specified size/species catch."
+            },
+            "Expand public awareness campaigns on sustainable seafood": {
+                reason: "Consumer demand drives market behavior; awareness can reduce pressure on overfished species.",
+                plan: "Certification labeling in local markets and school outreach programs."
+            },
+            "Implement temporary seasonal fishing closures": {
+                reason: "Provides species-specific protection during sensitive spawning periods, maximizing recruitment for the next season.",
+                plan: "Execute a 3-month ban on targeted species during peak breeding months with artisanal subsidies."
+            },
+            "Tighten gear restrictions to reduce bycatch": {
+                reason: "Reduces unintended mortality of juvenile fish and non-target species, improving vertical stock health.",
+                plan: "Mandate selective gillnets, ban small-mesh dragging, and distribute circular hooks."
+            },
+            "Strengthen local enforcement of maritime boundaries": {
+                reason: "Deters illegal, unreported, and unregulated (IUU) fishing which undermines official management efforts.",
+                plan: "Increase coastal radar patrol frequency and establish community-led sea guard programs."
+            },
+            "Introduce dynamic ocean management using real-time satellite data": {
+                reason: "Allows for reactive closures based on fish migration patterns, reducing bycatch while maintaining efficiency.",
+                plan: "Deploy mobile app for fishers indicating high-risk zones and adjust no-take areas weekly."
+            },
+            "Mandate electronic monitoring on all mid-sized vessels": {
+                reason: "Increases transparency and compliance with quotas, especially in remote fishing grounds.",
+                plan: "Subsidize camera installations and implement AI-based catch verification on shore."
+            },
+            "Immediate moratorium on specific vulnerable species": {
+                reason: "Critical stock levels require a complete halt to allow for biological recovery and avoid local extinction.",
+                plan: "24-month total ban on harvesting specified species with mandatory buy-back of non-selective gear."
+            },
+            "Drastic reduction in industrial fishing permits": {
+                reason: "Industrial fleets exert disproportionate pressure on high-sea stocks compared to artisanal efforts.",
+                plan: "Cancel 50% of deep-sea commercial licenses and shift focus to sustainable local coastal management."
+            },
+            "Establishment of wide-scale Marine Protected Areas (MPAs)": {
+                reason: "No-take zones create 'safe havens' that export biomass to adjacent fishing grounds through spillover.",
+                plan: "Formally protect 30% of EEZ from all extractive activities and deploy acoustic monitoring buoys."
+            },
+            "Impose heavy fines for high-sea transshipment violations": {
+                reason: "Transshipment is a major loophole for laundering illegal catch; high cost deter such activity.",
+                plan: "Legislative reform to increase fines by 500% and blacklist offending vessel owners."
+            },
+            "Full transition of fleet to zero-emission artisanal vessels": {
+                reason: "Reduces both carbon footprint and fishing capacity to a level more compatible with ecosystem limits.",
+                plan: "Grants for electric motors and traditional boat building materials."
+            }
+        };
+
+        function updateSubmitState() {
+            const country = document.getElementById('country-select').value;
+            const btn = document.getElementById('submit-btn');
+            if (country && selectedDuration) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        }
+
+        /**
+         * Simple CSV parser that handles quoted fields with commas.
+         */
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current.trim().replace(/^"|"$/g, ''));
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current.trim().replace(/^"|"$/g, ''));
+            return result;
+        }
+
+        async function init() {
+            const select = document.getElementById('country-select');
+            const status = document.getElementById('status');
+            const dropZone = document.getElementById('drop-zone');
+            const pills = document.querySelectorAll('.pill');
+            const submitBtn = document.getElementById('submit-btn');
+
+            // Country selection change
+            select.addEventListener('change', updateSubmitState);
+
+            // Drag and Drop + Click Logic
+            pills.forEach(pill => {
+                // Click support
+                pill.addEventListener('click', () => {
+                    const duration = pill.dataset.duration;
+                    console.log(`Pill clicked: ${duration}`);
+                    selectDuration(duration);
+                });
+
+                // Drag support
+                pill.addEventListener('dragstart', (e) => {
+                    console.log(`Drag start: ${pill.dataset.duration}`);
+                    e.dataTransfer.setData('text/plain', pill.dataset.duration);
+                    pill.style.opacity = '0.5';
+                });
+
+                pill.addEventListener('dragend', () => {
+                    pill.style.opacity = '1';
+                });
+            });
+
+            function selectDuration(duration) {
+                selectedDuration = duration;
+                dropZone.textContent = `${duration} Years Selected`;
+                dropZone.classList.add('has-item');
+                
+                // Visual feedback on pills
+                pills.forEach(p => {
+                    if (p.dataset.duration === duration) {
+                        p.style.background = 'var(--primary)';
+                        p.style.color = 'white';
+                        p.style.borderColor = 'var(--primary)';
+                    } else {
+                        p.style.background = '#f1f5f9';
+                        p.style.color = 'var(--text)';
+                        p.style.borderColor = 'var(--border)';
+                    }
+                });
+                
+                updateSubmitState();
+            }
+
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('drag-over');
+            });
+
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('drag-over');
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('drag-over');
+                const duration = e.dataTransfer.getData('text/plain');
+                console.log(`Dropped duration: ${duration}`);
+                if (duration) {
+                    selectDuration(duration);
+                }
+            });
+
+            submitBtn.addEventListener('click', () => {
+                showResults(select.value, selectedDuration);
+            });
+
+            // Global Explain Risk Button
+            const btnExplainRisk = document.getElementById('btn-explain-risk');
+            const riskSpinner = document.getElementById('risk-spinner');
+            const riskExplainText = document.getElementById('risk-explain-text');
+
+            btnExplainRisk.addEventListener('click', async () => {
+                const category = document.getElementById('risk-cat').textContent;
+                if (!category || category === '--') return;
+
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio = null;
+                }
+
+                try {
+                    btnExplainRisk.disabled = true;
+                    riskSpinner.style.display = 'block';
+                    riskExplainText.textContent = '...';
+
+                    const response = await fetch(API_BASE + '/api/risk-explanation-audio', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ category: category })
+                    });
+
+                    if (!response.ok) {
+                        let msg = 'Failed to generate risk audio';
+                        try {
+                            const err = await response.json();
+                            if (err && err.detail) msg = typeof err.detail === 'string' ? err.detail : msg;
+                        } catch (_) {
+                            msg = response.statusText || msg;
+                        }
+                        throw new Error(msg);
+                    }
+
+                    const blob = await response.blob();
+                    const url = URL.createObjectURL(blob);
+                    currentAudio = new Audio(url);
+                    currentAudio.play();
+
+                    currentAudio.onended = () => {
+                        btnExplainRisk.disabled = false;
+                        riskSpinner.style.display = 'none';
+                        riskExplainText.textContent = 'Explain';
+                    };
+                } catch (error) {
+                    console.error(error);
+                    btnExplainRisk.disabled = false;
+                    riskSpinner.style.display = 'none';
+                    riskExplainText.textContent = 'Explain';
+                    alert('Error: ' + error.message);
+                }
+            });
+        }
+
+        async function showResults(country, duration) {
+            const resultsSection = document.getElementById('results');
+            const riskVal = document.getElementById('risk-val');
+            const riskCat = document.getElementById('risk-cat');
+            const recList = document.getElementById('rec-list');
+            const graphImg = document.getElementById('forecast-graph');
+            const status = document.getElementById('status');
+
+            // Find risk data
+            const countryRisk = riskData.find(d => d.Country === country);
+            if (countryRisk) {
+                const scoreKey = `risk_score_${duration}y`;
+                const numericScore = parseFloat(countryRisk[scoreKey]);
+                const score = numericScore.toFixed(3);
+                const roundedScore = parseFloat(score); 
+                
+                let category = 'low';
+                if (roundedScore >= 0.55) {
+                    category = 'high';
+                } else if (roundedScore >= 0.45) {
+                    category = 'medium';
+                } else {
+                    category = 'low';
+                }
+
+                riskVal.textContent = score;
+                riskCat.textContent = category;
+                riskCat.className = `risk-category category-${category.toLowerCase()}`;
+
+                currentResultState = {
+                    country: country,
+                    horizon_years: parseInt(duration),
+                    risk_score: numericScore
+                };
+
+                currentCategory = category;
+                const pool = allPolicyPools[category];
+                currentRecTitles = [...pool].sort(() => 0.5 - Math.random()).slice(0, 3);
+                renderRecommendations();
+
+                let fileSafeCountry = country
+                    .replace(/[()]/g, '')
+                    .replace(/[.:']/g, '')
+                    .replace(/[\/\s,]+/g, '_')
+                    .replace(/_+/g, '_')
+                    .replace(/^_|_$/g, '');
+                
+                const graphFolder = `graphs_${duration}y`;
+                const graphFileName = `${fileSafeCountry}_${duration}y.png`;
+                const graphPath = `${graphFolder}/${graphFileName}`;
+
+                status.textContent = `Attempting to load: ${graphPath}`;
+
+                graphImg.src = graphPath;
+                graphImg.onerror = () => {
+                    graphImg.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="%23cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Crect x="3" y="3" width="18" height="18" rx="2" ry="2"/%3E%3Cline x1="3" y1="9" x2="21" y2="9"/%3E%3Cpath d="m3 9 9 6 9-6"/%3E%3Ccircle cx="12" cy="13" r="1"/%3E%3C/svg%3E';
+                    status.textContent = `Graph not found: ${graphFileName}`;
+                };
+            }
+
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function loadData() {
+            const select = document.getElementById('country-select');
+            const status = document.getElementById('status');
+            if (!select || !status) return;
+            try {
+                status.textContent = 'Loading data...';
+                const forecastResponse = await fetch('forecast_next5years.csv');
+                if (!forecastResponse.ok) throw new Error('Failed to load forecast data');
+                const forecastText = await forecastResponse.text();
+
+                const riskResponse = await fetch('risk_score_with_category.csv');
+                if (!riskResponse.ok) throw new Error('Failed to load risk scores');
+                const riskText = await riskResponse.text();
+
+                const lines = forecastText.split(/\r?\n/).filter(line => line.trim() !== '');
+                const dataLines = lines.slice(1);
+                const countriesSet = new Set();
+                dataLines.forEach(line => {
+                    const columns = parseCSVLine(line);
+                    if (columns.length > 0 && columns[0]) countriesSet.add(columns[0]);
+                });
+
+                const riskLines = riskText.split(/\r?\n/).filter(line => line.trim() !== '');
+                const riskHeader = parseCSVLine(riskLines[0]);
+                riskData = riskLines.slice(1).map(line => {
+                    const cols = parseCSVLine(line);
+                    const obj = {};
+                    riskHeader.forEach((h, i) => obj[h] = cols[i]);
+                    return obj;
+                });
+
+                const sortedCountries = Array.from(countriesSet).sort((a, b) => a.localeCompare(b));
+                select.innerHTML = '<option value="">Select a country</option>';
+                sortedCountries.forEach(c => {
+                    const option = document.createElement('option');
+                    option.value = c;
+                    option.textContent = c;
+                    select.appendChild(option);
+                });
+
+                select.disabled = false;
+                status.textContent = `Loaded ${sortedCountries.length} countries.`;
+            } catch (error) {
+                console.error(error);
+                status.textContent = 'Error: ' + error.message;
+                select.innerHTML = '<option value="">Failed to load</option>';
+            }
+        }
+
+        // Modal Logic
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const modalTitle = document.getElementById('modal-title');
+        const modalReason = document.getElementById('modal-reason');
+        const modalPlan = document.getElementById('modal-plan');
+        const modalClose = document.getElementById('modal-close');
+        const modalAccept = document.getElementById('modal-accept');
+        const modalReject = document.getElementById('modal-reject');
+
+        function renderRecommendations() {
+            const recList = document.getElementById('rec-list');
+            recList.innerHTML = currentRecTitles.map(r => `<li class="policy-item" data-title="${r}">${r}</li>`).join('');
+            
+            document.querySelectorAll('.policy-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const title = item.dataset.title;
+                    const details = policyDetails[title] || { 
+                        reason: "Rationale is being evaluated by the research team.", 
+                        plan: "Implementation steps are pending final review." 
+                    };
+                    openModal(title, details.reason, details.plan);
+                });
+            });
+        }
+
+        function swapPolicy(rejectedTitle) {
+            const pool = allPolicyPools[currentCategory];
+            const availableExtras = pool.filter(p => !currentRecTitles.includes(p));
+            
+            if (availableExtras.length > 0) {
+                const newPolicy = availableExtras[Math.floor(Math.random() * availableExtras.length)];
+                const index = currentRecTitles.indexOf(rejectedTitle);
+                if (index !== -1) {
+                    currentRecTitles[index] = newPolicy;
+                    renderRecommendations();
+                    return newPolicy;
+                }
+            }
+            return null;
+        }
+
+        function openModal(title, reason, plan) {
+            modalTitle.textContent = title;
+            modalReason.textContent = reason;
+            modalPlan.textContent = plan;
+            modalBackdrop.style.display = 'flex';
+        }
+
+        modalAccept.addEventListener('click', () => {
+            alert('Policy Accepted: ' + modalTitle.textContent);
+            closeModal();
+        });
+
+        modalReject.addEventListener('click', () => {
+            const rejected = modalTitle.textContent;
+            const replacement = swapPolicy(rejected);
+            if (replacement) {
+                alert(`Policy Rejected: ${rejected}\n\nIt has been swapped with:\n"${replacement}"`);
+            } else {
+                alert(`Policy Rejected: ${rejected}\n(No more alternative policies available in this category)`);
+            }
+            closeModal();
+        });
+
+        const modalExplain = document.getElementById('modal-explain');
+        const explainSpinner = document.getElementById('explain-spinner');
+        const explainText = document.getElementById('explain-text');
+
+        modalExplain.addEventListener('click', async () => {
+            if (!currentResultState || !modalTitle.textContent) return;
+
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+
+            try {
+                modalExplain.disabled = true;
+                explainSpinner.style.display = 'block';
+                explainText.textContent = 'Generating Audio...';
+
+                const response = await fetch(API_BASE + '/api/policy-explanation-audio', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        country: currentResultState.country,
+                        horizon_years: currentResultState.horizon_years,
+                        risk_score: currentResultState.risk_score,
+                        policies: [modalTitle.textContent]
+                    })
+                });
+
+                if (!response.ok) {
+                    let msg = 'Failed to generate audio';
+                    try {
+                        const err = await response.json();
+                        if (err && err.detail) msg = typeof err.detail === 'string' ? err.detail : JSON.stringify(err.detail);
+                    } catch (_) {
+                        msg = response.statusText || msg;
+                    }
+                    throw new Error(msg);
+                }
+
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+                currentAudio = new Audio(url);
+                currentAudio.play();
+                
+                explainText.textContent = 'Playing...';
+                currentAudio.onended = () => {
+                    explainText.textContent = 'Explain Mechanism (Audio)';
+                    modalExplain.disabled = false;
+                    explainSpinner.style.display = 'none';
+                };
+
+            } catch (error) {
+                console.error(error);
+                const isDeployed = (API_BASE.indexOf('YOUR-CLOUD-RUN-URL') !== -1);
+                alert('Audio Error: ' + error.message + (isDeployed ? '\n\nAudio will work after you deploy the TTS backend to Cloud Run and set API_BASE in index.html to that URL.' : '\n\nMake sure the TTS API server is running on port 8010 (local).'));
+                explainText.textContent = 'Explain Mechanism (Audio)';
+                modalExplain.disabled = false;
+                explainSpinner.style.display = 'none';
+            }
+        });
+
+        function closeModal() {
+            modalBackdrop.style.display = 'none';
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            explainText.textContent = 'Explain Mechanism (Audio)';
+            modalExplain.disabled = false;
+            explainSpinner.style.display = 'none';
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        function onReady() {
+            init().catch(console.error);
+            loadData().catch(console.error);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', onReady);
+        } else {
+            onReady();
+        }
+    </script>
+</body>
+</html>
