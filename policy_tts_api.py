@@ -30,7 +30,7 @@ import os
 from typing import List, Optional
 
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import Response
+from fastapi.responses import Response, JSONResponse
 from pydantic import BaseModel, Field, field_validator
 
 from dotenv import load_dotenv
@@ -88,14 +88,36 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="FishSave Policy TTS API")
 
-# Add CORS middleware
+# CORS: frontend does not send credentials, so "*" is allowed
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
+
+# Ensure CORS headers on error responses (some proxies/clients strip them on 5xx)
+CORS_HEADERS = {"Access-Control-Allow-Origin": "*"}
+
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"detail": exc.detail},
+        headers=CORS_HEADERS,
+    )
+
+
+@app.exception_handler(Exception)
+async def generic_exception_handler(request, exc: Exception):
+    return JSONResponse(
+        status_code=500,
+        content={"detail": str(exc)},
+        headers=CORS_HEADERS,
+    )
 
 
 @app.get("/")
