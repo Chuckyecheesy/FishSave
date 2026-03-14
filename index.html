@@ -643,7 +643,6 @@
             </div>
         </div>
         
-        <div id="api-base-display" class="status" style="font-size:0.75rem;color:#64748b;margin-top:0.25rem;">Using API: …</div>
         <div id="status" class="status">Initialising...</div>
     </div>
 
@@ -681,10 +680,6 @@
             var isLocal = h === 'localhost' || h === '127.0.0.1' || h === '0.0.0.0' || h === '' || h === '::1';
             if (isLocal) return 'http://127.0.0.1:8010';
             return 'https://fishsave-tts-api-545490620195.us-central1.run.app';
-        })();
-        (function showApiBase() {
-            var el = document.getElementById('api-base-display');
-            if (el) el.textContent = 'Using API: ' + API_BASE;
         })();
         let selectedDuration = null;
         let riskData = [];
@@ -995,12 +990,10 @@
                 const graphFileName = `${fileSafeCountry}_${duration}y.png`;
                 const graphPath = `${graphFolder}/${graphFileName}`;
 
-                status.textContent = `Attempting to load: ${graphPath}`;
-
                 graphImg.src = graphPath;
                 graphImg.onerror = () => {
                     graphImg.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="%23cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Crect x="3" y="3" width="18" height="18" rx="2" ry="2"/%3E%3Cline x1="3" y1="9" x2="21" y2="9"/%3E%3Cpath d="m3 9 9 6 9-6"/%3E%3Ccircle cx="12" cy="13" r="1"/%3E%3C/svg%3E';
-                    status.textContent = `Graph not found: ${graphFileName}`;
+                    status.textContent = 'Graph not found';
                 };
             }
 
