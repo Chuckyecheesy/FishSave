@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "firebase:inject": "node scripts/inject-firebase-key.cjs",
+    "firebase:restore-placeholder": "node scripts/restore-firebase-placeholder.cjs"
+  },
   "dependencies": {
     "firebase": "^12.10.0"
   },

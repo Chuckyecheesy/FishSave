@@ -1,0 +1,47 @@
+# Deploy to Firebase Hosting with API key from GitHub Secrets (public repo safe).
+# Setup: Repo → Settings → Secrets → Actions:
+#   FIREBASE_WEB_API_KEY  = Browser key from Firebase (same as local .env)
+#   FIREBASE_TOKEN        = output of: npx firebase login:ci
+name: Deploy Firebase Hosting
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Inject Firebase Web API key
+        env:
+          FIREBASE_WEB_API_KEY: ${{ secrets.FIREBASE_WEB_API_KEY }}
+        run: |
+          if [ -z "$FIREBASE_WEB_API_KEY" ]; then
+            echo "Add repository secret FIREBASE_WEB_API_KEY (Firebase → Project settings → Web app)."
+            exit 1
+          fi
+          sed -i "s/__FIREBASE_WEB_API_KEY__/${FIREBASE_WEB_API_KEY}/g" index.html
+          if grep -q '__FIREBASE_WEB_API_KEY__' index.html; then
+            echo "Placeholder still present — check index.html"
+            exit 1
+          fi
+
+      - run: npm ci 2>/dev/null || npm install
+
+      - name: Deploy to Firebase
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          if [ -z "$FIREBASE_TOKEN" ]; then
+            echo "Add repository secret FIREBASE_TOKEN. Run locally: npx firebase login:ci"
+            exit 1
+          fi
+          npx firebase deploy --only hosting --project overfishing-2d415 --non-interactive --token "$FIREBASE_TOKEN"

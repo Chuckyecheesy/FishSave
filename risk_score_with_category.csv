@@ -1,245 +1,245 @@
 Country,risk_score_5y,risk_score_10y,risk_category,risk_category_pred
-Afghanistan,0.432566,0.49961,low,low
-Albania,0.432566,0.49961,low,low
-Algeria,0.432491,0.499592,low,low
-American Samoa,0.432499,0.499709,low,low
-Andorra,0.432566,0.49961,low,low
-Angola,0.432566,0.49961,low,low
-Anguilla,0.431982,0.499456,low,low
-Antigua and Barbuda,0.432566,0.49961,low,low
-Argentina,0.432566,0.49961,low,low
-Armenia,0.444336,0.485553,low,low
-Aruba,0.432566,0.49961,low,low
-Australia,0.432713,0.499769,low,low
-Austria,0.713946,0.56779,high,medium
-Azerbaijan,0.603043,0.811457,high,medium
-BES,0.432566,0.49961,low,low
-BLM,0.432566,0.49961,low,low
-Bahamas,0.432541,0.499602,low,low
-Bahrain,0.432566,0.49961,low,low
-Bangladesh,0.483344,0.601987,medium,medium
-Barbados,0.432566,0.49961,low,low
-Belarus,0.432566,0.49961,low,low
-Belgium,0.432799,0.499929,low,low
-Belize,0.412902,0.540043,low,low
-Benin,0.432576,0.499612,low,low
-Bermuda,0.432567,0.49961,low,low
-Bhutan,0.438818,0.491213,low,low
-Bolivia (Plurinat.State),0.432566,0.49961,low,low
-Bosnia and Herzegovina,0.437026,0.506297,low,low
-Botswana,0.432467,0.499613,low,low
-Brazil,0.449519,0.533015,medium,medium
-British Indian Ocean Ter,0.432566,0.49961,low,low
-British Virgin Islands,0.432529,0.499663,low,low
-Brunei Darussalam,0.432566,0.49961,low,low
-Bulgaria,0.432566,0.49961,low,low
-Burkina Faso,0.432535,0.499637,low,low
-Burundi,0.433133,0.499854,low,low
-CUW,0.432566,0.49961,low,low
-Cambodia,0.432566,0.49961,low,low
+Afghanistan,0.432566,0.49961,low,medium
+Albania,0.432566,0.49961,low,medium
+Algeria,0.432491,0.499592,low,medium
+American Samoa,0.432499,0.499709,low,medium
+Andorra,0.432566,0.49961,low,medium
+Angola,0.432566,0.49961,low,medium
+Anguilla,0.431982,0.499456,low,medium
+Antigua and Barbuda,0.432566,0.49961,low,medium
+Argentina,0.432566,0.49961,low,medium
+Armenia,0.444336,0.485553,low,medium
+Aruba,0.432566,0.49961,low,medium
+Australia,0.432713,0.499769,low,medium
+Austria,0.713946,0.56779,high,high
+Azerbaijan,0.603043,0.811457,high,high
+BES,0.432566,0.49961,low,medium
+BLM,0.432566,0.49961,low,medium
+Bahamas,0.432541,0.499602,low,medium
+Bahrain,0.432566,0.49961,low,medium
+Bangladesh,0.483344,0.601987,medium,high
+Barbados,0.432566,0.49961,low,medium
+Belarus,0.432566,0.49961,low,medium
+Belgium,0.432799,0.499929,low,medium
+Belize,0.412902,0.540043,low,medium
+Benin,0.432576,0.499612,low,medium
+Bermuda,0.432567,0.49961,low,medium
+Bhutan,0.438818,0.491213,low,medium
+Bolivia (Plurinat.State),0.432566,0.49961,low,medium
+Bosnia and Herzegovina,0.437026,0.506297,low,medium
+Botswana,0.432467,0.499613,low,medium
+Brazil,0.449519,0.533015,low,medium
+British Indian Ocean Ter,0.432566,0.49961,low,medium
+British Virgin Islands,0.432529,0.499663,low,medium
+Brunei Darussalam,0.432566,0.49961,low,medium
+Bulgaria,0.432566,0.49961,low,medium
+Burkina Faso,0.432535,0.499637,low,medium
+Burundi,0.433133,0.499854,low,medium
+CUW,0.432566,0.49961,low,medium
+Cambodia,0.432566,0.49961,low,medium
 Cameroon,0.48142,0.598347,medium,medium
-Canada,0.432566,0.49961,low,low
-Cape Verde,0.432567,0.49961,low,low
-Cayman Islands,0.432566,0.49961,low,low
-Central African Republic,0.432549,0.499586,low,low
-Chad,0.432565,0.499609,low,low
-Chile,0.432564,0.499508,low,low
+Canada,0.432566,0.49961,low,medium
+Cape Verde,0.432567,0.49961,low,medium
+Cayman Islands,0.432566,0.49961,low,medium
+Central African Republic,0.432549,0.499586,low,medium
+Chad,0.432565,0.499609,low,medium
+Chile,0.432564,0.499508,low,medium
 China,0.472368,0.580837,medium,medium
-"China, Hong Kong SAR",0.432566,0.49961,low,low
-"China, Macao SAR",0.432566,0.49961,low,low
-Colombia,0.434819,0.496173,low,low
-Comoros,0.4331,0.49973,low,low
-"Congo, Dem. Rep. of the",0.432566,0.49961,low,low
-"Congo, Republic of",0.432566,0.49961,low,low
-Cook Islands,0.432566,0.49961,low,low
-Costa Rica,0.432566,0.49961,low,low
-Croatia,0.432566,0.49961,low,low
-Cuba,0.432566,0.49961,low,low
-Cyprus,0.432566,0.49961,low,low
-Czech Republic,0.432568,0.49961,low,low
-Czechoslovakia,0.432566,0.49961,low,low
-Côte d'Ivoire,0.432566,0.49961,low,low
-Denmark,0.432512,0.499597,low,low
-Djibouti,0.433134,0.500573,low,low
-Dominica,0.432703,0.499637,low,low
-Dominican Republic,0.413457,0.463113,low,low
-Ecuador,0.432566,0.49961,low,low
+"China, Hong Kong SAR",0.432566,0.49961,low,medium
+"China, Macao SAR",0.432566,0.49961,low,medium
+Colombia,0.434819,0.496173,low,medium
+Comoros,0.4331,0.49973,low,medium
+"Congo, Dem. Rep. of the",0.432566,0.49961,low,medium
+"Congo, Republic of",0.432566,0.49961,low,medium
+Cook Islands,0.432566,0.49961,low,medium
+Costa Rica,0.432566,0.49961,low,medium
+Croatia,0.432566,0.49961,low,medium
+Cuba,0.432566,0.49961,low,medium
+Cyprus,0.432566,0.49961,low,medium
+Czech Republic,0.432568,0.49961,low,medium
+Czechoslovakia,0.432566,0.49961,low,medium
+Côte d'Ivoire,0.432566,0.49961,low,medium
+Denmark,0.432512,0.499597,low,medium
+Djibouti,0.433134,0.500573,low,medium
+Dominica,0.432703,0.499637,low,medium
+Dominican Republic,0.413457,0.463113,low,medium
+Ecuador,0.432566,0.49961,low,medium
 Egypt,0.483296,0.601846,medium,medium
 El Salvador,0.477314,0.589835,medium,medium
-Equatorial Guinea,0.432566,0.49961,low,low
-Eritrea,0.421762,0.497968,low,low
-Estonia,0.431923,0.49873,low,low
+Equatorial Guinea,0.432566,0.49961,low,medium
+Eritrea,0.421762,0.497968,low,medium
+Estonia,0.431923,0.49873,low,medium
 Ethiopia,0.479228,0.590851,medium,medium
-Falkland Is.(Malvinas),0.432566,0.49961,low,low
-Faroe Islands,0.432566,0.49961,low,low
-"Fiji, Republic of",0.432566,0.49961,low,low
-Finland,0.432551,0.499606,low,low
-France,0.432566,0.49961,low,low
-French Guiana,0.432566,0.49961,low,low
-French Polynesia,0.432566,0.49961,low,low
-French Southern Terr,0.432566,0.49961,low,low
-Gabon,0.421625,0.479737,low,low
-Gambia,0.432593,0.499616,low,low
-Georgia,0.583081,0.778184,high,medium
-Germany,0.432566,0.49961,low,low
-Ghana,0.432566,0.49961,low,low
-Gibraltar,0.432566,0.49961,low,low
-Greece,0.432566,0.49961,low,low
-Greenland,0.432566,0.49961,low,low
-Grenada,0.432566,0.49961,low,low
-Guadeloupe,0.432566,0.49961,low,low
-Guam,0.432566,0.49961,low,low
-Guatemala,0.432566,0.49961,low,low
+Falkland Is.(Malvinas),0.432566,0.49961,low,medium
+Faroe Islands,0.432566,0.49961,low,medium
+"Fiji, Republic of",0.432566,0.49961,low,medium
+Finland,0.432551,0.499606,low,medium
+France,0.432566,0.49961,low,medium
+French Guiana,0.432566,0.49961,low,medium
+French Polynesia,0.432566,0.49961,low,medium
+French Southern Terr,0.432566,0.49961,low,medium
+Gabon,0.421625,0.479737,low,medium
+Gambia,0.432593,0.499616,low,medium
+Georgia,0.583081,0.778184,high,high
+Germany,0.432566,0.49961,low,medium
+Ghana,0.432566,0.49961,low,medium
+Gibraltar,0.432566,0.49961,low,medium
+Greece,0.432566,0.49961,low,medium
+Greenland,0.432566,0.49961,low,medium
+Grenada,0.432566,0.49961,low,medium
+Guadeloupe,0.432566,0.49961,low,medium
+Guam,0.432566,0.49961,low,medium
+Guatemala,0.432566,0.49961,low,medium
 Guinea,0.460795,0.473148,medium,medium
-Guinea-Bissau,0.43286,0.499197,low,low
-Guyana,0.432563,0.499609,low,low
-Haiti,0.440812,0.514594,low,low
-Honduras,0.432565,0.49961,low,low
-Hungary,0.43257,0.499611,low,low
-Iceland,0.432566,0.49961,low,low
-India,0.429196,0.494312,low,low
-Indonesia,0.445538,0.501622,low,low
-Iran (Islamic Rep. of),0.488059,0.610982,medium,medium
-Iraq,0.43256,0.499609,low,low
-Ireland,0.432566,0.49961,low,low
-Isle of Man,0.432566,0.49961,low,low
-Israel,0.432566,0.49961,low,low
-Italy,0.432566,0.49961,low,low
-Jamaica,0.432566,0.49961,low,low
-Japan,0.432559,0.499607,low,low
-Jordan,0.432566,0.49961,low,low
-Kazakhstan,0.432566,0.49961,low,low
-Kenya,0.432566,0.49961,low,low
-Kiribati,0.432566,0.49961,low,low
-"Korea, Dem. People's Rep",0.432566,0.49961,low,low
-"Korea, Republic of",0.432566,0.49961,low,low
-Kuwait,0.432566,0.49961,low,low
-Kyrgyzstan,0.432566,0.49961,low,low
+Guinea-Bissau,0.43286,0.499197,low,medium
+Guyana,0.432563,0.499609,low,medium
+Haiti,0.440812,0.514594,low,medium
+Honduras,0.432565,0.49961,low,medium
+Hungary,0.43257,0.499611,low,medium
+Iceland,0.432566,0.49961,low,medium
+India,0.429196,0.494312,low,medium
+Indonesia,0.445538,0.501622,low,medium
+Iran (Islamic Rep. of),0.488059,0.610982,medium,high
+Iraq,0.43256,0.499609,low,medium
+Ireland,0.432566,0.49961,low,medium
+Isle of Man,0.432566,0.49961,low,medium
+Israel,0.432566,0.49961,low,medium
+Italy,0.432566,0.49961,low,medium
+Jamaica,0.432566,0.49961,low,medium
+Japan,0.432559,0.499607,low,medium
+Jordan,0.432566,0.49961,low,medium
+Kazakhstan,0.432566,0.49961,low,medium
+Kenya,0.432566,0.49961,low,medium
+Kiribati,0.432566,0.49961,low,medium
+"Korea, Dem. People's Rep",0.432566,0.49961,low,medium
+"Korea, Republic of",0.432566,0.49961,low,medium
+Kuwait,0.432566,0.49961,low,medium
+Kyrgyzstan,0.432566,0.49961,low,medium
 Lao People's Dem. Rep.,0.473681,0.58272,medium,medium
-Latvia,0.432564,0.499609,low,low
-Lebanon,0.524225,0.529139,medium,low
+Latvia,0.432564,0.499609,low,medium
+Lebanon,0.524225,0.529139,medium,medium
 Lesotho,0.50588,0.627489,medium,medium
-Liberia,0.432566,0.49961,low,low
-Libyan Arab Jamahiriya,0.432566,0.49961,low,low
-Liechtenstein,0.432566,0.49961,low,low
-Lithuania,0.432566,0.49961,low,low
-Luxembourg,0.432566,0.49961,low,low
-MAF,0.432566,0.49961,low,low
-"Macedonia, Fmr Yug Rp of",0.432566,0.49961,low,low
-Madagascar,0.425528,0.485521,low,low
-Malawi,0.432566,0.49961,low,low
-Malaysia,0.432849,0.499717,low,low
-Maldives,0.432563,0.499609,low,low
+Liberia,0.432566,0.49961,low,medium
+Libyan Arab Jamahiriya,0.432566,0.49961,low,medium
+Liechtenstein,0.432566,0.49961,low,medium
+Lithuania,0.432566,0.49961,low,medium
+Luxembourg,0.432566,0.49961,low,medium
+MAF,0.432566,0.49961,low,medium
+"Macedonia, Fmr Yug Rp of",0.432566,0.49961,low,medium
+Madagascar,0.425528,0.485521,low,medium
+Malawi,0.432566,0.49961,low,medium
+Malaysia,0.432849,0.499717,low,medium
+Maldives,0.432563,0.499609,low,medium
 Mali,0.461179,0.472342,medium,medium
-Malta,0.432566,0.49961,low,low
-Marshall Islands,0.432566,0.49961,low,low
-Martinique,0.432566,0.49961,low,low
-Mauritania,0.432689,0.499779,low,low
-Mauritius,0.434394,0.502149,low,low
+Malta,0.432566,0.49961,low,medium
+Marshall Islands,0.432566,0.49961,low,medium
+Martinique,0.432566,0.49961,low,medium
+Mauritania,0.432689,0.499779,low,medium
+Mauritius,0.434394,0.502149,low,medium
 Mayotte,0.444444,0.516236,low,medium
-Mexico,0.432566,0.49961,low,low
-"Micronesia, Fed.States of",0.432566,0.49961,low,low
-"Moldova, Republic of",0.43265,0.49963,low,low
-Monaco,0.432566,0.49961,low,low
-Mongolia,0.718764,0.571608,high,medium
-Montenegro,0.432566,0.49961,low,low
-Montserrat,0.432566,0.49961,low,low
-Morocco,0.432566,0.49961,low,low
-Mozambique,0.432566,0.49961,low,low
-Myanmar,0.428617,0.493862,low,low
-Namibia,0.430889,0.497209,low,low
-Nauru,0.432583,0.499614,low,low
-Nepal,0.484222,0.603699,medium,medium
-Netherlands,0.432483,0.499589,low,low
-Netherlands Antilles,0.432566,0.49961,low,low
-New Caledonia,0.432566,0.49961,low,low
-New Zealand,0.432566,0.49961,low,low
-Nicaragua,0.43574,0.505281,low,low
-Niger,0.434532,0.504395,low,low
-Nigeria,0.485365,0.605808,medium,medium
-Niue,0.432566,0.49961,low,low
-Norfolk Island,0.432566,0.49961,low,low
-Northern Mariana Is.,0.432566,0.49961,low,low
-Norway,0.432555,0.49961,low,low
-Oman,0.432566,0.49961,low,low
-Pakistan,0.432566,0.49961,low,low
-Palau,0.432566,0.49961,low,low
-"Palestine, Occupied Tr.",0.432566,0.49961,low,low
-Panama,0.432566,0.49961,low,low
-Papua New Guinea,0.431719,0.498473,low,low
-Paraguay,0.432566,0.49961,low,low
-Peru,0.432524,0.499605,low,low
-Philippines,0.416259,0.477798,low,low
-Pitcairn Islands,0.432566,0.49961,low,low
-Poland,0.432567,0.49961,low,low
-Portugal,0.432567,0.49961,low,low
-Puerto Rico,0.433401,0.499935,low,low
-Qatar,0.432566,0.49961,low,low
-Romania,0.432594,0.499576,low,low
+Mexico,0.432566,0.49961,low,medium
+"Micronesia, Fed.States of",0.432566,0.49961,low,medium
+"Moldova, Republic of",0.43265,0.49963,low,medium
+Monaco,0.432566,0.49961,low,medium
+Mongolia,0.718764,0.571608,high,high
+Montenegro,0.432566,0.49961,low,medium
+Montserrat,0.432566,0.49961,low,medium
+Morocco,0.432566,0.49961,low,medium
+Mozambique,0.432566,0.49961,low,medium
+Myanmar,0.428617,0.493862,low,medium
+Namibia,0.430889,0.497209,low,medium
+Nauru,0.432583,0.499614,low,medium
+Nepal,0.484222,0.603699,medium,high
+Netherlands,0.432483,0.499589,low,medium
+Netherlands Antilles,0.432566,0.49961,low,medium
+New Caledonia,0.432566,0.49961,low,medium
+New Zealand,0.432566,0.49961,low,medium
+Nicaragua,0.43574,0.505281,low,medium
+Niger,0.434532,0.504395,low,medium
+Nigeria,0.485365,0.605808,medium,high
+Niue,0.432566,0.49961,low,medium
+Norfolk Island,0.432566,0.49961,low,medium
+Northern Mariana Is.,0.432566,0.49961,low,medium
+Norway,0.432555,0.49961,low,medium
+Oman,0.432566,0.49961,low,medium
+Pakistan,0.432566,0.49961,low,medium
+Palau,0.432566,0.49961,low,medium
+"Palestine, Occupied Tr.",0.432566,0.49961,low,medium
+Panama,0.432566,0.49961,low,medium
+Papua New Guinea,0.431719,0.498473,low,medium
+Paraguay,0.432566,0.49961,low,medium
+Peru,0.432524,0.499605,low,medium
+Philippines,0.416259,0.477798,low,medium
+Pitcairn Islands,0.432566,0.49961,low,medium
+Poland,0.432567,0.49961,low,medium
+Portugal,0.432567,0.49961,low,medium
+Puerto Rico,0.433401,0.499935,low,medium
+Qatar,0.432566,0.49961,low,medium
+Romania,0.432594,0.499576,low,medium
 Russian Federation,0.469845,0.575907,medium,medium
-Rwanda,0.432566,0.49961,low,low
-Réunion,0.43255,0.499611,low,low
-SMR,0.432566,0.49961,low,low
-SSD,0.432566,0.49961,low,low
-SXM,0.432566,0.49961,low,low
-Saint Helena,0.432526,0.4996,low,low
+Rwanda,0.432566,0.49961,low,medium
+Réunion,0.43255,0.499611,low,medium
+SMR,0.432566,0.49961,low,medium
+SSD,0.432566,0.49961,low,medium
+SXM,0.432566,0.49961,low,medium
+Saint Helena,0.432526,0.4996,low,medium
 Saint Kitts and Nevis,0.5,0.5,medium,medium
-Saint Lucia,0.432566,0.49961,low,low
-Saint Vincent/Grenadines,0.432566,0.49961,low,low
-Samoa,0.432566,0.49961,low,low
-Sao Tome and Principe,0.432566,0.49961,low,low
+Saint Lucia,0.432566,0.49961,low,medium
+Saint Vincent/Grenadines,0.432566,0.49961,low,medium
+Samoa,0.432566,0.49961,low,medium
+Sao Tome and Principe,0.432566,0.49961,low,medium
 Saudi Arabia,0.480039,0.5957,medium,medium
-Senegal,0.432356,0.499468,low,low
-Serbia,0.432566,0.49961,low,low
-Serbia and Montenegro,0.432566,0.49961,low,low
-Seychelles,0.432566,0.49961,low,low
-Sierra Leone,0.432566,0.49961,low,low
+Senegal,0.432356,0.499468,low,medium
+Serbia,0.432566,0.49961,low,medium
+Serbia and Montenegro,0.432566,0.49961,low,medium
+Seychelles,0.432566,0.49961,low,medium
+Sierra Leone,0.432566,0.49961,low,medium
 Singapore,0.470721,0.561499,medium,medium
-Slovakia,0.434018,0.501798,low,low
-Slovenia,0.432566,0.49961,low,low
-Solomon Islands,0.432683,0.499648,low,low
-Somalia,0.432566,0.49961,low,low
-South Africa,0.432566,0.49961,low,low
-Spain,0.432566,0.49961,low,low
+Slovakia,0.434018,0.501798,low,medium
+Slovenia,0.432566,0.49961,low,medium
+Solomon Islands,0.432683,0.499648,low,medium
+Somalia,0.432566,0.49961,low,medium
+South Africa,0.432566,0.49961,low,medium
+Spain,0.432566,0.49961,low,medium
 Sri Lanka,0.473242,0.582553,medium,medium
-St. Pierre and Miquelon,0.432566,0.49961,low,low
-Sudan,0.432566,0.49961,low,low
-Suriname,0.43235,0.499961,low,low
-Svalbard and Jan Mayen,0.432566,0.49961,low,low
-Swaziland,0.42942,0.495341,low,low
-Sweden,0.432566,0.49961,low,low
-Switzerland,0.432423,0.499572,low,low
-Syrian Arab Republic,0.432565,0.499604,low,low
-Taiwan Province of China,0.432566,0.49961,low,low
-Tajikistan,0.432564,0.499611,low,low
-"Tanzania, United Rep. of",0.432566,0.49961,low,low
-Thailand,0.432564,0.49961,low,low
-Timor-Leste,0.432566,0.49961,low,low
-Togo,0.432584,0.499614,low,low
-Tokelau,0.432566,0.49961,low,low
-Tonga,0.432566,0.49961,low,low
-Trinidad and Tobago,0.432559,0.499608,low,low
+St. Pierre and Miquelon,0.432566,0.49961,low,medium
+Sudan,0.432566,0.49961,low,medium
+Suriname,0.43235,0.499961,low,medium
+Svalbard and Jan Mayen,0.432566,0.49961,low,medium
+Swaziland,0.42942,0.495341,low,medium
+Sweden,0.432566,0.49961,low,medium
+Switzerland,0.432423,0.499572,low,medium
+Syrian Arab Republic,0.432565,0.499604,low,medium
+Taiwan Province of China,0.432566,0.49961,low,medium
+Tajikistan,0.432564,0.499611,low,medium
+"Tanzania, United Rep. of",0.432566,0.49961,low,medium
+Thailand,0.432564,0.49961,low,medium
+Timor-Leste,0.432566,0.49961,low,medium
+Togo,0.432584,0.499614,low,medium
+Tokelau,0.432566,0.49961,low,medium
+Tonga,0.432566,0.49961,low,medium
+Trinidad and Tobago,0.432559,0.499608,low,medium
 Tunisia,0.455728,0.547786,medium,medium
-Turkey,0.432566,0.49961,low,low
-Turkmenistan,0.434143,0.497433,low,low
-Turks and Caicos Is.,0.442847,0.514793,low,low
-Tuvalu,0.416423,0.529924,low,low
-US Virgin Islands,0.432566,0.49961,low,low
-Uganda,0.435527,0.504222,low,low
-Ukraine,0.432566,0.49961,low,low
-Un. Sov. Soc. Rep.,0.432566,0.49961,low,low
-United Arab Emirates,0.432566,0.49961,low,low
-United Kingdom,0.432568,0.49961,low,low
-United States of America,0.432566,0.49961,low,low
-Uruguay,0.432569,0.499621,low,low
-Uzbekistan,0.434836,0.500197,low,low
-Vanuatu,0.432566,0.49961,low,low
-"Venezuela, Boliv Rep of",0.432566,0.49961,low,low
-Viet Nam,0.42868,0.517212,low,low
-Wallis and Futuna Is.,0.432566,0.49961,low,low
-Western Sahara,0.432566,0.49961,low,low
-Yemen,0.432263,0.499523,low,low
-Yugoslavia SFR,0.432566,0.49961,low,low
-Zambia,0.432566,0.49961,low,low
-Zanzibar,0.432566,0.49961,low,low
-Zimbabwe,0.472997,0.582072,medium,medium
+Turkey,0.432566,0.49961,low,medium
+Turkmenistan,0.434143,0.497433,low,medium
+Turks and Caicos Is.,0.442847,0.514793,low,medium
+Tuvalu,0.416423,0.529924,low,medium
+US Virgin Islands,0.432566,0.49961,low,medium
+Uganda,0.435527,0.504222,low,medium
+Ukraine,0.432566,0.49961,low,medium
+Un. Sov. Soc. Rep.,0.432566,0.49961,low,medium
+United Arab Emirates,0.432566,0.49961,low,medium
+United Kingdom,0.432568,0.49961,low,medium
+United States of America,0.432566,0.49961,low,medium
+Uruguay,0.432569,0.499621,low,medium
+Uzbekistan,0.434836,0.500197,low,medium
+Vanuatu,0.432566,0.49961,low,medium
+"Venezuela, Boliv Rep of",0.432566,0.49961,low,medium
+Viet Nam,0.42868,0.517212,low,medium
+Wallis and Futuna Is.,0.432566,0.49961,low,medium
+Western Sahara,0.432566,0.49961,low,medium
+Yemen,0.432263,0.499523,low,medium
+Yugoslavia SFR,0.432566,0.49961,low,medium
+Zambia,0.432566,0.49961,low,medium
+Zanzibar,0.432566,0.49961,low,medium
+Zimbabwe,0.472997,0.582072,medium,high

@@ -194,7 +194,12 @@ where \(\tilde{s}\) are normalized slopes and \(\tilde{S}\) are normalized sums.
 
 ## Deploy
 
-- **Frontend:** `npx firebase deploy --only hosting` (Hosting URL: https://overfishing-2d415.web.app).  
+- **Frontend (live):** https://overfishing-2d415.web.app  
+- **Public GitHub (hackathon):** `index.html` uses placeholder `__FIREBASE_WEB_API_KEY__`. CI injects the real key — see **[HACKATHON_PUBLIC_REPO.md](./HACKATHON_PUBLIC_REPO.md)**.  
+- **Local / manual deploy:** Add `FIREBASE_WEB_API_KEY=...` to `.env`, then:
+  - `npm run firebase:inject` → `npx firebase deploy --only hosting` (or `firebase serve`)
+  - Before commit: `npm run firebase:restore-placeholder`  
+- **Firebase Web API key security:** **[FIREBASE_SECURITY_SETUP.md](./FIREBASE_SECURITY_SETUP.md)** (HTTP referrers, rotate, etc.).  
 - **TTS API:** Deploy `policy_tts_api` to **Google Cloud Run** (e.g. `gcloud run deploy fishsave-tts-api --source . --region us-central1 --allow-unauthenticated`). Set env vars `ELEVENLABS_API_KEY` and optionally `ELEVENLABS_VOICE_ID` in the Cloud Run service.  
 - Point the frontend’s `API_BASE` in `index.html` to your Cloud Run URL.
 
